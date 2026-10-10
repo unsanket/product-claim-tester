@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Claim Tester | Hypothesis Testing Web App</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts: Inter for clean, modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- =========================================================
+       ACADEMIC COLLEGE HEADER
+       Marathwada Mitra Mandal's College of Engineering, Pune
+       ========================================================= -->
+  <header class="college-header">
+    <div class="header-inner container">
+      <div class="college-badge">
+        <div class="badge-icon">MMCOE</div>
+      </div>
+      <div class="college-info">
+        <h1 class="college-name">Marathwada Mitra Mandal's College of Engineering, Pune</h1>
+        <p class="college-dept">Department of Computer Engineering | Second Year B.Tech (SY COMP)</p>
+        <p class="college-course">Course: <strong>CE24MDM207 &mdash; Mathematical Foundation for GenAI</strong></p>
+      </div>
+      <div class="project-tag">
+        <span class="tag-label">Mini Project</span>
+        <span class="tag-topic">Hypothesis Testing</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       APPLICATION NAVIGATION BAR (4 PAGES / TABS)
+       ========================================================= -->
+  <nav class="main-nav">
+    <div class="nav-inner container">
+      <div class="app-brand">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/>
+            <path d="M18 17V9"/>
+            <path d="M13 17V5"/>
+            <path d="M8 17v-3"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Product Claim Tester</span>
+          <span class="brand-subtitle">Statistical Inference Engine</span>
+        </div>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <button class="nav-tab active" data-page="home">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Home
+        </button>
+        <button class="nav-tab" data-page="test">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 2v7.31M14 9.3V1.99M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0"/>
+            <path d="M5.52 16h12.96"/>
+          </svg>
+          Test a Claim
+        </button>
+        <button class="nav-tab" data-page="data">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          My Data
+        </button>
+        <button class="nav-tab" data-page="about">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          About & Theory
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       MAIN CONTENT CONTAINER (PAGES)
+       ========================================================= -->
+  <main class="main-content container">
+
+    <!-- =======================================================
+         PAGE 1: HOME
+         ======================================================= -->
+    <section id="page-home" class="page-section active">
+      <!-- Hero Introduction Banner -->
+      <div class="hero-card">
+        <div class="hero-content">
+          <span class="pill-badge">Statistical Quality Assurance</span>
+          <h2 class="hero-title">Validate Engineering & Product Claims with Scientific Rigor</h2>
+          <p class="hero-description">
+            Companies make bold claims every day: <em>"Our phone battery lasts at least 24 hours,"</em>
+            <em>"Our LED bulb runs for 1,000+ hours,"</em> or <em>"Canteen order wait is at most 10 minutes."</em>
+            Can you trust these numbers?
+          </p>
+          <p class="hero-subtext">
+            <strong>Hypothesis Testing</strong> gives engineers and data scientists a rigorous mathematical framework.
+            By testing a random sample against the claimed population parameter, we determine whether observed differences
+            are genuine defects or mere random sample fluctuations.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="navigateTo('test')">
+              Launch Claim Tester &rarr;
+            </button>
+            <button class="btn btn-secondary" onclick="navigateTo('data')">
+              Analyze Raw Data Sample
+            </button>
+          </div>
+        </div>
+        <div class="hero-graphic">
+          <div class="distribution-preview-box">
+            <div class="preview-header">
+              <span class="preview-dot dot-red"></span>
+              <span class="preview-dot dot-yellow"></span>
+              <span class="preview-dot dot-green"></span>
+              <span class="preview-title">Normal Curve (Z-Distribution)</span>
+            </div>
+            <!-- Decorative Mini Bell Curve -->
+            <svg class="preview-curve-svg" viewBox="0 0 320 160" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.02"/>
+                </linearGradient>
+                <linearGradient id="critGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#ef4444" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#ef4444" stop-opacity="0.05"/>
+                </linearGradient>
+              </defs>
+              <!-- Acceptance region fill -->
+              <path d="M 10 145 C 50 145, 90 140, 115 110 C 135 85, 145 25, 160 25 C 175 25, 185 85, 205 110 C 230 140, 270 145, 310 145 L 310 145 L 10 145 Z" fill="url(#curveGradient)"/>
+              <!-- Critical region fill on left tail -->
+              <path d="M 10 145 C 40 145, 60 143, 75 130 C 82 125, 87 118, 90 115 L 90 145 Z" fill="url(#critGradient)"/>
+              <!-- Curve line -->
+              <path d="M 10 145 C 50 145, 90 140, 115 110 C 135 85, 145 25, 160 25 C 175 25, 185 85, 205 110 C 230 140, 270 145, 310 145" fill="none" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+              <!-- Rejection cut line -->
+              <line x1="90" y1="115" x2="90" y2="145" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3"/>
+              <text x="90" y="105" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600">-1.645</text>
+              <text x="160" y="140" text-anchor="middle" fill="#64748b" font-size="11">μ (Mean)</text>
+              <line x1="160" y1="25" x2="160" y2="145" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2,2"/>
+            </svg>
+            <div class="preview-stats">
+              <span class="preview-stat-item"><strong>H₀:</strong> μ ≥ μ₀</span>
+              <span class="preview-stat-item"><strong>α:</strong> 0.05</span>
+              <span class="preview-stat-item"><strong>Decision:</strong> Reject H₀</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Explanation Steps -->
+      <div class="how-it-works-bar">
+        <div class="step-mini">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Select Claim</strong>Choose what the company promises</div>
+        </div>
+        <div class="step-arrow">&rarr;</div>
+        <div class="step-mini">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Provide Sample</strong>Enter sample mean &amp; sample size</div>
+        </div>
+        <div class="step-arrow">&rarr;</div>
+        <div class="step-mini">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>Compute Z &amp; P</strong>Observe rejection critical region</div>
+        </div>
+        <div class="step-arrow">&rarr;</div>
+        <div class="step-mini">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>Real Verdict</strong>Plain-English consumer decision</div>
+        </div>
+      </div>
+
+      <!-- 4 Example Cards Section -->
+      <div class="section-title-wrapper">
+        <h3 class="section-heading">Pre-configured Engineering Scenarios</h3>
+        <p class="section-subheading">Click any card to pre-fill real-world parameters and test the claim instantly:</p>
+      </div>
+
+      <div class="example-cards-grid">
+        <!-- Example 1: Battery Life -->
+        <div class="card example-card" onclick="loadExample('battery')">
+          <div class="card-badge badge-blue">Left-Tailed Test</div>
+          <div class="card-icon-header">
+            <div class="card-icon icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="16" height="10" rx="2" ry="2"/>
+                <line x1="22" y1="11" x2="22" y2="13"/>
+                <line x1="6" y1="11" x2="6" y2="13"/>
+                <line x1="10" y1="11" x2="10" y2="13"/>
+              </svg>
+            </div>
+            <h4 class="card-title">Smartphone Battery Life</h4>
+          </div>
+          <p class="card-desc">
+            Manufacturer advertises that their flagship phone provides <strong>at least 24 hours</strong> of battery life on a single charge.
+          </p>
+          <div class="card-params">
+            <div class="param-row"><span>Claimed Mean (μ₀):</span> <strong>24.0 hrs</strong></div>
+            <div class="param-row"><span>Sample Mean (x̄):</span> <strong>22.8 hrs</strong></div>
+            <div class="param-row"><span>Std Dev (σ):</span> <strong>3.2 hrs</strong></div>
+            <div class="param-row"><span>Sample Size (n):</span> <strong>45 devices</strong></div>
+          </div>
+          <button class="btn btn-card-action">Test Battery Claim &rarr;</button>
+        </div>
+
+        <!-- Example 2: LED Bulb Life (Quality Rule benchmark test case) -->
+        <div class="card example-card highlight-card" onclick="loadExample('led')">
+          <div class="card-badge badge-emerald">Course Benchmark Case</div>
+          <div class="card-icon-header">
+            <div class="card-icon icon-amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18h6"/>
+                <path d="M10 22h4"/>
+                <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+              </svg>
+            </div>
+            <h4 class="card-title">LED Bulb Life (1000h)</h4>
+          </div>
+          <p class="card-desc">
+            Manufacturer asserts their industrial LED bulb lasts <strong>at least 1,000 hours</strong>. A consumer testing lab tests 36 bulbs.
+          </p>
+          <div class="card-params">
+            <div class="param-row"><span>Claimed Mean (μ₀):</span> <strong>1,000 hrs</strong></div>
+            <div class="param-row"><span>Sample Mean (x̄):</span> <strong>980 hrs</strong></div>
+            <div class="param-row"><span>Std Dev (σ):</span> <strong>60 hrs</strong></div>
+            <div class="param-row"><span>Sample Size (n):</span> <strong>36 bulbs</strong></div>
+          </div>
+          <button class="btn btn-card-action">Test LED Bulb Claim &rarr;</button>
+        </div>
+
+        <!-- Example 3: Class Attendance -->
+        <div class="card example-card" onclick="loadExample('attendance')">
+          <div class="card-badge badge-purple">Left-Tailed Test</div>
+          <div class="card-icon-header">
+            <div class="card-icon icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h4 class="card-title">Class Attendance Rate</h4>
+          </div>
+          <p class="card-desc">
+            College department policy expects average class attendance to remain <strong>at least 75%</strong> over the semester.
+          </p>
+          <div class="card-params">
+            <div class="param-row"><span>Claimed Mean (μ₀):</span> <strong>75.0%</strong></div>
+            <div class="param-row"><span>Sample Mean (x̄):</span> <strong>72.4%</strong></div>
+            <div class="param-row"><span>Std Dev (σ):</span> <strong>8.5%</strong></div>
+            <div class="param-row"><span>Sample Size (n):</span> <strong>40 lectures</strong></div>
+          </div>
+          <button class="btn btn-card-action">Test Attendance Claim &rarr;</button>
+        </div>
+
+        <!-- Example 4: Canteen Waiting Time -->
+        <div class="card example-card" onclick="loadExample('canteen')">
+          <div class="card-badge badge-rose">Right-Tailed Test</div>
+          <div class="card-icon-header">
+            <div class="card-icon icon-rose">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h4 class="card-title">Canteen Waiting Time</h4>
+          </div>
+          <p class="card-desc">
+            Campus food committee promises queue waiting time is <strong>at most 10 minutes</strong> during peak lunch break.
+          </p>
+          <div class="card-params">
+            <div class="param-row"><span>Claimed Mean (μ₀):</span> <strong>10.0 mins</strong></div>
+            <div class="param-row"><span>Sample Mean (x̄):</span> <strong>11.2 mins</strong></div>
+            <div class="param-row"><span>Std Dev (σ):</span> <strong>2.8 mins</strong></div>
+            <div class="param-row"><span>Sample Size (n):</span> <strong>35 visits</strong></div>
+          </div>
+          <button class="btn btn-card-action">Test Wait Time Claim &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PAGE 2: TEST A CLAIM
+         ======================================================= -->
+    <section id="page-test" class="page-section">
+      <div class="section-title-wrapper">
+        <h2 class="section-heading">Hypothesis Claim Testing Engine</h2>
+        <p class="section-subheading">
+          Enter population and sample statistics below to execute a one-sample Z-test with visual rejection regions.
+        </p>
+      </div>
+
+      <div class="test-layout-grid">
+        <!-- Form Column -->
+        <div class="card form-card">
+          <div class="form-header">
+            <h3 class="form-title">Test Parameters</h3>
+            <button class="btn btn-ghost-sm" type="button" onclick="resetTestForm()">Reset</button>
+          </div>
+
+          <form id="claimTestForm" onsubmit="handleClaimTestSubmit(event)">
+            <!-- Product Name -->
+            <div class="form-group">
+              <label for="productName" class="form-label">
+                Product / Study Name
+                <span class="label-hint">What are you testing?</span>
+              </label>
+              <input type="text" id="productName" class="form-input" placeholder="e.g. Industrial LED Bulb 1000h" value="Industrial LED Bulb">
+            </div>
+
+            <!-- Claim Type -->
+            <div class="form-group">
+              <label class="form-label">
+                Claim Direction (Hypothesis Type)
+                <span class="label-hint">Choose how the claim is framed</span>
+              </label>
+              <div class="radio-pill-group">
+                <label class="radio-pill">
+                  <input type="radio" name="claimType" value="at_least" checked>
+                  <span class="pill-content">
+                    <span class="pill-symbol">&ge;</span>
+                    <span class="pill-text">At least (μ &ge; μ₀)</span>
+                  </span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="claimType" value="at_most">
+                  <span class="pill-content">
+                    <span class="pill-symbol">&le;</span>
+                    <span class="pill-text">At most (μ &le; μ₀)</span>
+                  </span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="claimType" value="equal">
+                  <span class="pill-content">
+                    <span class="pill-symbol">=</span>
+                    <span class="pill-text">Exactly (μ = μ₀)</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 2x2 Numeric Inputs Grid -->
+            <div class="input-grid">
+              <div class="form-group">
+                <label for="claimedMean" class="form-label">
+                  Claimed Mean (μ₀) <span class="required">*</span>
+                  <span class="label-hint">Hypothesized value</span>
+                </label>
+                <input type="number" step="any" id="claimedMean" class="form-input" placeholder="e.g. 1000" value="1000" required>
+              </div>
+
+              <div class="form-group">
+                <label for="sampleMean" class="form-label">
+                  Sample Mean (x̄) <span class="required">*</span>
+                  <span class="label-hint">Observed in sample</span>
+                </label>
+                <input type="number" step="any" id="sampleMean" class="form-input" placeholder="e.g. 980" value="980" required>
+              </div>
+
+              <div class="form-group">
+                <label for="sigma" class="form-label">
+                  Pop. Std Deviation (σ) <span class="required">*</span>
+                  <span class="label-hint">Must be &gt; 0</span>
+                </label>
+                <input type="number" step="any" id="sigma" class="form-input" placeholder="e.g. 60" value="60" required min="0.00001">
+              </div>
+
+              <div class="form-group">
+                <label for="sampleSize" class="form-label">
+                  Sample Size (n) <span class="required">*</span>
+                  <span class="label-hint">Integer &ge; 1 (Best n &ge; 30)</span>
+                </label>
+                <input type="number" step="1" id="sampleSize" class="form-input" placeholder="e.g. 36" value="36" required min="1">
+              </div>
+            </div>
+
+            <!-- Significance Level Alpha -->
+            <div class="form-group">
+              <label for="alpha" class="form-label">
+                Significance Level (&alpha;)
+                <span class="label-hint">Type I error risk (default 0.05 = 5%)</span>
+              </label>
+              <div class="alpha-select-row">
+                <select id="alpha" class="form-select" onchange="handleAlphaChange(this.value)">
+                  <option value="0.01">0.01 (99% Confidence Level)</option>
+                  <option value="0.05" selected>0.05 (95% Confidence Level &mdash; Standard)</option>
+                  <option value="0.10">0.10 (90% Confidence Level)</option>
+                  <option value="custom">Custom Value...</option>
+                </select>
+                <input type="number" id="customAlpha" class="form-input custom-alpha-input hidden" step="0.001" min="0.001" max="0.5" placeholder="e.g. 0.02">
+              </div>
+            </div>
+
+            <!-- Error Feedback Box -->
+            <div id="testErrorMessage" class="alert-box alert-error hidden"></div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="btnTestSubmit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+                Test the Claim
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Live Quick Stats Card -->
+        <div class="card summary-panel-card">
+          <h3 class="panel-title">Instant Statistical Overview</h3>
+          <p class="panel-sub">Live feedback based on your entered parameters</p>
+
+          <div class="quick-stat-grid">
+            <div class="stat-box">
+              <span class="stat-label">Claim Type</span>
+              <span class="stat-value" id="quickClaimType">At least (Left-Tailed)</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Mean Difference (x̄ - μ₀)</span>
+              <span class="stat-value" id="quickDiff">-20.00</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Standard Error (SE)</span>
+              <span class="stat-value" id="quickSE">10.0000</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Z-Score</span>
+              <span class="stat-value highlight-stat" id="quickZ">-2.0000</span>
+            </div>
+          </div>
+
+          <div class="quick-tip-box">
+            <div class="tip-icon">&#128161;</div>
+            <div class="tip-text">
+              <strong>Quality Check Standard:</strong><br>
+              Setting μ₀ = 1000, x̄ = 980, σ = 60, n = 36 with "at least" and α = 0.05 evaluates to <strong>z = -2.00</strong> and Critical Value = <strong>-1.645</strong>, triggering a <strong>Reject H₀</strong> decision.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+           STEP-BY-STEP CALCULATION RESULTS SECTION
+           ===================================================== -->
+      <div id="resultsContainer" class="results-container">
+        <div class="results-header">
+          <div class="results-header-text">
+            <h3 class="results-title">Hypothesis Testing Step-by-Step Report</h3>
+            <p class="results-subtitle" id="resultsSubject">Product: Industrial LED Bulb &bull; Claim: At least 1000</p>
+          </div>
+          <div class="results-header-actions">
+            <button class="btn btn-secondary btn-sm" onclick="downloadResultPDF()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download Result as PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- 5 Steps Breakdown Cards -->
+        <div class="steps-grid">
+          <!-- Step 1: Hypotheses -->
+          <div class="card step-card">
+            <div class="step-card-header">
+              <span class="step-badge">Step 1</span>
+              <h4 class="step-heading">Formulate Hypotheses</h4>
+            </div>
+            <div class="step-card-body">
+              <p class="step-desc">Establish the Null ($H_0$) and Alternative ($H_1$) hypotheses based on the claim:</p>
+              <div class="formula-box" id="step1Formulas">
+                <div class="formula-line"><strong>Null Hypothesis ($H_0$):</strong> <span class="math-tex" id="h0Formula">$\mu \ge 1000$</span> (Manufacturer claim)</div>
+                <div class="formula-line"><strong>Alternative ($H_1$):</strong> <span class="math-tex" id="h1Formula">$\mu < 1000$</span> (Opposing claim / Defect)</div>
+              </div>
+              <p class="step-annotation" id="tailExplanation">
+                Since $H_1$ points to values <em>less than</em> the claimed mean, this is a <strong>Left-Tailed (One-Tailed) Test</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2: Significance Level -->
+          <div class="card step-card">
+            <div class="step-card-header">
+              <span class="step-badge">Step 2</span>
+              <h4 class="step-heading">Significance Level</h4>
+            </div>
+            <div class="step-card-body">
+              <p class="step-desc">Determine the threshold for Type I error risk ($\alpha$):</p>
+              <div class="formula-box">
+                <div class="formula-line"><strong>$\alpha$:</strong> <span class="math-tex" id="step2Alpha">0.05 (5.0%)</span></div>
+                <div class="formula-line"><strong>Confidence Level ($1 - \alpha$):</strong> <span class="math-tex" id="step2Conf">0.95 (95.0%)</span></div>
+              </div>
+              <p class="step-annotation">
+                There is a maximum 5% chance of incorrectly rejecting a true null hypothesis.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3: Critical Value -->
+          <div class="card step-card">
+            <div class="step-card-header">
+              <span class="step-badge">Step 3</span>
+              <h4 class="step-heading">Critical Value &amp; Rejection Region</h4>
+            </div>
+            <div class="step-card-body">
+              <p class="step-desc">Determine the critical cutoff from standard normal $Z$-table:</p>
+              <div class="formula-box" id="step3CriticalBox">
+                <div class="formula-line"><strong>Critical Value ($z_{\text{crit}}$):</strong> <span class="math-tex highlight-val" id="step3CritVal">-1.645</span></div>
+                <div class="formula-line"><strong>Rejection Criterion:</strong> <span class="math-tex" id="step3Rule">Reject $H_0$ if $z < -1.645$</span></div>
+              </div>
+              <p class="step-annotation" id="step3Annotation">
+                If the calculated test statistic falls strictly inside the critical region, the claim fails the statistical test.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4: Test Statistic Z -->
+          <div class="card step-card">
+            <div class="step-card-header">
+              <span class="step-badge">Step 4</span>
+              <h4 class="step-heading">Compute Test Statistic ($z$)</h4>
+            </div>
+            <div class="step-card-body">
+              <p class="step-desc">Calculate standard error and standardized distance from the mean:</p>
+              <div class="formula-box calculation-display">
+                <div class="math-equation">
+                  $$z = \frac{\bar{x} - \mu_0}{\frac{\sigma}{\sqrt{n}}}$$
+                </div>
+                <div class="math-substitution" id="step4Substitution">
+                  $$z = \frac{980 - 1000}{\frac{60}{\sqrt{36}}} = \frac{-20}{\frac{60}{6}} = \frac{-20}{10} = \mathbf{-2.0000}$$
+                </div>
+                <div class="math-se" id="step4SE">
+                  Standard Error ($\text{SE}$) = $\frac{60}{6} = 10.0000$
+                </div>
+              </div>
+              <p class="step-annotation">
+                The sample mean is <strong>2.00 standard errors</strong> below the manufacturer's claimed mean.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 5: P-value -->
+          <div class="card step-card">
+            <div class="step-card-header">
+              <span class="step-badge">Step 5</span>
+              <h4 class="step-heading">Compute P-Value</h4>
+            </div>
+            <div class="step-card-body">
+              <p class="step-desc">Exact probability of observing sample data at least as extreme:</p>
+              <div class="formula-box">
+                <div class="formula-line"><strong>$p$-value:</strong> <span class="math-tex highlight-val" id="step5PVal">0.0228 (2.28%)</span></div>
+                <div class="formula-line"><strong>Comparison:</strong> <span class="math-tex" id="step5Comparison">$p\text{-value } (0.0228) < \alpha\ (0.05)$</span></div>
+              </div>
+              <p class="step-annotation" id="step5Annotation">
+                Because $p < \alpha$, the empirical observation has less than 2.28% probability under $H_0$.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             FINAL VERDICT BOX (GREEN OR RED)
+             ===================================================== -->
+        <div id="verdictBox" class="verdict-box verdict-reject">
+          <div class="verdict-icon-wrap" id="verdictIcon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="15" y1="9" x2="9" y2="15"/>
+              <line x1="9" y1="9" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <div class="verdict-body">
+            <div class="verdict-status-tag" id="verdictStatus">DECISION: REJECT H₀ (NULL HYPOTHESIS REJECTED)</div>
+            <h3 class="verdict-headline" id="verdictHeadline">The Product Fails the Claim Test</h3>
+            <p class="verdict-text" id="verdictExplanation">
+              At the 5% level of significance, the calculated test statistic ($z = -2.0000$) falls in the critical rejection region ($z < -1.645$).
+              Moreover, the $p$-value ($0.0228$) is less than $\alpha$ ($0.05$). Therefore, we reject the null hypothesis. There is statistically significant evidence that the true mean bulb life is less than 1,000 hours. The manufacturer's claim is refuted.
+            </p>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             INTERACTIVE SVG BELL CURVE DISTRIBUTION
+             ===================================================== -->
+        <div class="card chart-card">
+          <div class="chart-header">
+            <div>
+              <h4 class="chart-title">Standard Normal Distribution Curve ($Z$-Distribution)</h4>
+              <p class="chart-subtitle">
+                Visualizing Acceptance &amp; Critical Rejection Regions with your Calculated Test Statistic $z$
+              </p>
+            </div>
+            <div class="chart-legend">
+              <span class="legend-item"><span class="legend-dot dot-curve"></span> Normal Density</span>
+              <span class="legend-item"><span class="legend-dot dot-critical"></span> Rejection Region</span>
+              <span class="legend-item"><span class="legend-dot dot-z"></span> Test Statistic ($z$)</span>
+            </div>
+          </div>
+
+          <!-- Dynamic SVG Canvas -->
+          <div class="svg-container">
+            <svg id="bellCurveSvg" viewBox="0 0 760 360" preserveAspectRatio="xMidYMid meet" class="bell-curve-svg">
+              <!-- Rendered via JavaScript -->
+            </svg>
+          </div>
+          <div class="chart-footer-note">
+            Standard normal curve spanning from $z = -4.0$ to $z = +4.0$. Shaded zones denote the critical rejection region determined by $\alpha$.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PAGE 3: MY DATA
+         ======================================================= -->
+    <section id="page-data" class="page-section">
+      <div class="section-title-wrapper">
+        <h2 class="section-heading">Raw Data Sample Analyzer</h2>
+        <p class="section-subheading">
+          Paste your experimental observations to compute 9 descriptive statistics, generate an empirical histogram, and send parameters directly to the claim tester.
+        </p>
+      </div>
+
+      <div class="data-layout-grid">
+        <!-- Input & Controls Column -->
+        <div class="card data-input-card">
+          <div class="form-header">
+            <h3 class="form-title">Enter Sample Observations</h3>
+            <div class="btn-group-sm">
+              <button class="btn btn-ghost-sm" type="button" onclick="loadSampleDataset('led36')">Sample 1 (LED n=36)</button>
+              <button class="btn btn-ghost-sm" type="button" onclick="loadSampleDataset('small')">Sample 2 (Small n=12)</button>
+              <button class="btn btn-ghost-sm" type="button" onclick="clearDataInput()">Clear</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rawDataInput" class="form-label">
+              Measurements (Numbers separated by commas, spaces, or line breaks)
+            </label>
+            <textarea id="rawDataInput" class="form-textarea" rows="8" placeholder="Paste data here... e.g.:&#10;982, 975, 1010, 940, 995, 960, 970, 985, 1020, 990, 955, 988, 965, 975, 1005, 980, 992, 945, 968, 972, 985, 990, 1015, 960, 978, 984, 950, 995, 970, 982, 966, 974, 988, 992, 958, 976"></textarea>
+          </div>
+
+          <!-- Small sample size alert (if n < 30) -->
+          <div id="sampleSizeWarning" class="alert-box alert-warning hidden">
+            <div class="alert-icon">&#9888;</div>
+            <div class="alert-body">
+              <strong>Small Sample Notice ($n < 30$):</strong>
+              <span id="sampleSizeWarningText">
+                Your sample has only <strong id="warningNCount">15</strong> observations. According to the Central Limit Theorem, when population variance ($\sigma^2$) is unknown, a <em>Student's t-test</em> is theoretically more accurate than a $Z$-test for $n < 30$.
+              </span>
+            </div>
+          </div>
+
+          <div class="data-action-buttons">
+            <button class="btn btn-primary" onclick="processRawData()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+              Calculate Statistics &amp; Plot
+            </button>
+            <button class="btn btn-success" id="btnUseDataForTest" onclick="useDataForClaimTest()" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+              Use this Data for the Test
+            </button>
+          </div>
+        </div>
+
+        <!-- 9 Descriptive Statistics Grid -->
+        <div class="card stats-card">
+          <h3 class="form-title">Summary Statistics</h3>
+          <p class="panel-sub">Calculated directly from the provided dataset</p>
+
+          <div class="stats-grid-9" id="statsGrid">
+            <div class="stat-tile">
+              <span class="tile-label">1. Sample Count ($n$)</span>
+              <span class="tile-val" id="statCount">&mdash;</span>
+            </div>
+            <div class="stat-tile tile-primary">
+              <span class="tile-label">2. Mean ($\bar{x}$)</span>
+              <span class="tile-val" id="statMean">&mdash;</span>
+            </div>
+            <div class="stat-tile">
+              <span class="tile-label">3. Median</span>
+              <span class="tile-val" id="statMedian">&mdash;</span>
+            </div>
+            <div class="stat-tile">
+              <span class="tile-label">4. Mode</span>
+              <span class="tile-val" id="statMode">&mdash;</span>
+            </div>
+            <div class="stat-tile">
+              <span class="tile-label">5. Minimum ($\min$)</span>
+              <span class="tile-val" id="statMin">&mdash;</span>
+            </div>
+            <div class="stat-tile">
+              <span class="tile-label">6. Maximum ($\max$)</span>
+              <span class="tile-val" id="statMax">&mdash;</span>
+            </div>
+            <div class="stat-tile">
+              <span class="tile-label">7. Range ($\max - \min$)</span>
+              <span class="tile-val" id="statRange">&mdash;</span>
+            </div>
+            <div class="stat-tile">
+              <span class="tile-label">8. Sample Variance ($s^2$)</span>
+              <span class="tile-val" id="statVariance">&mdash;</span>
+            </div>
+            <div class="stat-tile tile-primary">
+              <span class="tile-label">9. Sample Std Dev ($s$)</span>
+              <span class="tile-val" id="statStdDev">&mdash;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Histogram Visualization -->
+      <div class="card chart-card" id="histogramCard">
+        <div class="chart-header">
+          <div>
+            <h4 class="chart-title">Sample Frequency Histogram</h4>
+            <p class="chart-subtitle" id="histSubtitle">Distribution of continuous sample measurements binned automatically</p>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot dot-hist"></span> Frequency Bar</span>
+            <span class="legend-item"><span class="legend-dot dot-mean"></span> Sample Mean ($\bar{x}$)</span>
+          </div>
+        </div>
+
+        <div class="svg-container">
+          <svg id="histogramSvg" viewBox="0 0 760 320" preserveAspectRatio="xMidYMid meet" class="histogram-svg">
+            <text x="380" y="160" text-anchor="middle" fill="#94a3b8" font-size="14">Enter data above and click "Calculate Statistics & Plot" to view histogram</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PAGE 4: ABOUT & THEORY
+         ======================================================= -->
+    <section id="page-about" class="page-section">
+      <div class="section-title-wrapper">
+        <h2 class="section-heading">About Hypothesis Testing &amp; Academic Scope</h2>
+        <p class="section-subheading">
+          Theoretical foundation, mathematical definitions, and syllabus curriculum mappings for SY COMP engineering students.
+        </p>
+      </div>
+
+      <!-- 5 Steps Explanation -->
+      <div class="card about-card">
+        <h3 class="about-title">The 5 Core Steps of Hypothesis Testing</h3>
+        <p class="about-lead">
+          Hypothesis testing is an inferential statistical methodology used to assess whether sample evidence supports or refutes a specific hypothesis regarding a population parameter.
+        </p>
+
+        <div class="theory-steps-list">
+          <div class="theory-step-item">
+            <div class="theory-badge">Step 1</div>
+            <div class="theory-content">
+              <h4>State the Null ($H_0$) and Alternative ($H_1$) Hypotheses</h4>
+              <p>
+                The <strong>Null Hypothesis ($H_0$)</strong> represents the baseline claim or status quo (e.g. "The battery meets or exceeds 24h").
+                The <strong>Alternative Hypothesis ($H_1$)</strong> represents the assertion you want to verify (e.g. "The battery life is defective / under 24h").
+              </p>
+            </div>
+          </div>
+
+          <div class="theory-step-item">
+            <div class="theory-badge">Step 2</div>
+            <div class="theory-content">
+              <h4>Select the Significance Level ($\alpha$)</h4>
+              <p>
+                The significance level ($\alpha$) specifies the maximum permissible risk of making a <strong>Type I error</strong> (rejecting a true null hypothesis).
+                Typical standards in engineering are $\alpha = 0.05$ (5% risk, 95% confidence) or $\alpha = 0.01$ (1% risk, 99% confidence for mission-critical parts).
+              </p>
+            </div>
+          </div>
+
+          <div class="theory-step-item">
+            <div class="theory-badge">Step 3</div>
+            <div class="theory-content">
+              <h4>Identify the Test Statistic and Critical Value ($z_{\text{crit}}$)</h4>
+              <p>
+                For large sample sizes ($n \ge 30$) or when population standard deviation ($\sigma$) is known, we use the standard normal $Z$-test.
+                The critical value divides the normal distribution into the <em>Acceptance Region</em> and the <em>Rejection Region</em>.
+              </p>
+            </div>
+          </div>
+
+          <div class="theory-step-item">
+            <div class="theory-badge">Step 4</div>
+            <div class="theory-content">
+              <h4>Compute the Test Statistic ($z$) from Sample Data</h4>
+              <p>
+                Calculate how many standard errors the sample mean $\bar{x}$ deviates from the hypothesized mean $\mu_0$:
+                $$z = \frac{\bar{x} - \mu_0}{\frac{\sigma}{\sqrt{n}}}$$
+                where $\frac{\sigma}{\sqrt{n}}$ is the standard error of the mean ($\text{SE}$).
+              </p>
+            </div>
+          </div>
+
+          <div class="theory-step-item">
+            <div class="theory-badge">Step 5</div>
+            <div class="theory-content">
+              <h4>Determine the $p$-Value and Formulate the Final Verdict</h4>
+              <p>
+                The $p$-value represents the probability of observing an outcome as extreme as the sample, assuming $H_0$ is true.
+                If $p \le \alpha$ (or if $|z|$ falls in the critical region), we <strong>Reject $H_0$</strong>. Otherwise, we <strong>Fail to Reject $H_0$</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistical Terms Reference Table -->
+      <div class="card about-card">
+        <h3 class="about-title">Key Terminology Reference</h3>
+        <div class="table-responsive">
+          <table class="terms-table">
+            <thead>
+              <tr>
+                <th>Symbol / Term</th>
+                <th>Formal Name</th>
+                <th>Engineering Definition</th>
+                <th>Decision Rule / Significance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>$H_0$</strong></td>
+                <td>Null Hypothesis</td>
+                <td>The hypothesis of "no difference" or the manufacturer's official specification claim.</td>
+                <td>Assumed true until sample evidence strongly contradicts it.</td>
+              </tr>
+              <tr>
+                <td><strong>$H_1$</strong> (or $H_a$)</td>
+                <td>Alternative Hypothesis</td>
+                <td>The statement that contradicts $H_0$; represents an engineering flaw or claim dispute.</td>
+                <td>Supported if $H_0$ is rejected.</td>
+              </tr>
+              <tr>
+                <td><strong>$\alpha$</strong> (Alpha)</td>
+                <td>Significance Level</td>
+                <td>Probability of rejecting $H_0$ when $H_0$ is actually true (Type I Error rate).</td>
+                <td>Common values: 0.05, 0.01, 0.10.</td>
+              </tr>
+              <tr>
+                <td><strong>$z_{\text{crit}}$</strong></td>
+                <td>Critical Value</td>
+                <td>Cutoff z-score corresponding to cumulative probability boundary of $\alpha$.</td>
+                <td>Determines boundary of the critical rejection region.</td>
+              </tr>
+              <tr>
+                <td><strong>$z$</strong></td>
+                <td>Test Statistic</td>
+                <td>Standardized distance between sample mean $\bar{x}$ and claimed mean $\mu_0$.</td>
+                <td>Compared against $z_{\text{crit}}$ to determine statistical rejection.</td>
+              </tr>
+              <tr>
+                <td><strong>$p$-value</strong></td>
+                <td>Probability Value</td>
+                <td>Exact probability of observing sample evidence as or more extreme under $H_0$.</td>
+                <td>If $p < \alpha$, Reject $H_0$. If $p \ge \alpha$, Fail to Reject $H_0$.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Curriculum Mapping Card -->
+      <div class="card curriculum-card">
+        <div class="curriculum-header">
+          <div class="curriculum-badge">Syllabus Alignment</div>
+          <h3>Academic Course Coverage &amp; Lab Assignments</h3>
+        </div>
+        <p>
+          This mini-project is developed as part of the curriculum requirements for <strong>CE24MDM207: Mathematical Foundation for GenAI</strong>,
+          Second Year Computer Engineering, at Marathwada Mitra Mandal's College of Engineering (MMCOE), Pune.
+        </p>
+        <div class="assignments-list">
+          <div class="assignment-item">
+            <div class="assignment-tag">Assignment 6</div>
+            <div class="assignment-desc">
+              <strong>Formulation of Hypotheses &amp; Error Analysis:</strong> Defining null ($H_0$) and alternative ($H_1$) hypotheses, understanding Type I ($\alpha$) and Type II ($\beta$) errors in engineering decision-making.
+            </div>
+          </div>
+          <div class="assignment-item">
+            <div class="assignment-tag">Assignment 7</div>
+            <div class="assignment-desc">
+              <strong>Large Sample Test for Single Population Mean (Z-Test):</strong> Computation of standard error $\frac{\sigma}{\sqrt{n}}$, calculating standardized $Z$-scores, and applying one-tailed and two-tailed tests.
+            </div>
+          </div>
+          <div class="assignment-item">
+            <div class="assignment-tag">Assignment 8</div>
+            <div class="assignment-desc">
+              <strong>Critical Region &amp; P-Value Decision Rules:</strong> Graphic visualization of normal rejection regions, determination of critical thresholds, exact $p$-value computation, and automated decision synthesis.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER (STUDENT & FACULTY ATTRIBUTION)
+       ========================================================= -->
+  <footer class="app-footer">
+    <div class="footer-inner container">
+      <div class="footer-attribution">
+        <div class="prepared-by">
+          <strong>Prepared by:</strong>
+          <span id="studentNameDisplay" class="editable-name" title="Click to edit your name">Sanket [Your Name]</span>,
+          Roll No: <span id="studentRollDisplay" class="editable-roll" title="Click to edit roll number">[Roll No]</span>
+          <button class="btn btn-ghost-xs" onclick="openStudentModal()" title="Customize Name & Roll No">&#9998; Edit</button>
+        </div>
+        <div class="guided-by">
+          <strong>Guided by:</strong> Dr. Swati Shekapure
+        </div>
+        <div class="college-subtext">
+          Department of Computer Engineering, Marathwada Mitra Mandal's College of Engineering, Pune
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span class="badge-mini">CE24MDM207 &bull; SY COMP</span>
+        <span class="footer-copy">&copy; 2026 MMCOE Pune. Educational Mini Project.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       EDIT STUDENT INFO MODAL
+       ========================================================= -->
+  <div id="studentModal" class="modal-overlay hidden" onclick="closeStudentModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Project Attribution</h4>
+        <button class="modal-close" onclick="closeStudentModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="inputStudentName" class="form-label">Student Name</label>
+          <input type="text" id="inputStudentName" class="form-input" placeholder="e.g. Sanket Sharma" value="Sanket">
+        </div>
+        <div class="form-group">
+          <label for="inputStudentRoll" class="form-label">Roll Number</label>
+          <input type="text" id="inputStudentRoll" class="form-input" placeholder="e.g. SYCO201" value="SYCO201">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeStudentModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveStudentInfo()">Save Info</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
